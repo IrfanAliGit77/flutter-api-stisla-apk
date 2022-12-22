@@ -50,4 +50,38 @@ class LogController {
       print(e.toString());
     }
   }
+
+  Future postRegister(String name, String email, String password,
+      String confirm_password) async {
+    try {
+      final response = await http.post(
+        Uri.parse(_baseURL + 'auth/register'),
+        headers: {
+          'Accept': 'application/json',
+        },
+        body: {
+          'name': name,
+          'email': email,
+          'password': password,
+          'password_confirmation': confirm_password,
+          'device_name': 'android',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        print('token : ' + response.body);
+
+        await storage.write(
+          key: 'token',
+          value: jsonDecode(response.body)['token'],
+        );
+        return true;
+      } else {
+        print(response.statusCode);
+        return false;
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }

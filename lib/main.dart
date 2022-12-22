@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:apk_api/controllers/login-cont.dart';
+import 'package:apk_api/controllers/log-cont.dart';
 import 'package:apk_api/screens/home/home-view.dart';
 import 'package:apk_api/screens/login/login-view.dart';
 

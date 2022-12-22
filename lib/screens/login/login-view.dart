@@ -1,4 +1,4 @@
-import 'package:apk_api/controllers/login-cont.dart';
+import 'package:apk_api/controllers/log-cont.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController(text: "superadmin@gmail.com");
   final TextEditingController _passwordController = TextEditingController(text: "password");
 
-  LoginController loginC = LoginController();
+  LogController loginC = LogController();
   final _loginKey = GlobalKey<FormState>();
   bool isLoginFalse = false;
 

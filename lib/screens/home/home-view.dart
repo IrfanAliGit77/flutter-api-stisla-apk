@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:apk_api/controllers/logout-cont.dart';
+import 'package:apk_api/controllers/log-cont.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -9,7 +9,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final logout = LogoutController();
+  final logout = LogController();
 
   @override
   void initState() {

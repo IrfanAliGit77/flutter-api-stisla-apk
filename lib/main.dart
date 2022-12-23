@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:apk_api/controllers/log-cont.dart';
 import 'package:apk_api/screens/home/home-view.dart';
 import 'package:apk_api/screens/login/login-view.dart';
+import 'package:apk_api/screens/register/register-view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,8 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
      return MaterialApp(
       routes: {
-        '/login': (context) => MainApp(),
-        '/homepage': (context) => HomePage(),
+        '/login': (context) => const MainApp(),
+        '/homepage': (context) => const HomePage(),
+        '/register': (context) => const Register(),
+
       },
       home: LoginPage(),
     );

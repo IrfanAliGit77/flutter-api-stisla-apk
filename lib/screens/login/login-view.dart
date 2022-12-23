@@ -150,6 +150,28 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("Don't have an account?"),
+                      TextButton(
+                        style: ButtonStyle(
+                          foregroundColor: MaterialStateProperty.all(
+                            const Color.fromARGB(255, 26, 53, 255),
+                          ),
+                        ),
+                        child: const Text(
+                          "Please Register Now!",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 26, 53, 255),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/register');
+                        },
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

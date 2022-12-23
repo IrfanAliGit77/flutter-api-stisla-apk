@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:apk_api/controllers/log-cont.dart';
 import 'package:apk_api/screens/home/home-view.dart';
 import 'package:apk_api/screens/login/login-view.dart';
+import 'package:apk_api/screens/kategori/create.dart';
 import 'package:apk_api/screens/register/register-view.dart';
 
 void main() {
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const MainApp(),
         '/homepage': (context) => const HomePage(),
         '/register': (context) => const Register(),
+        '/category/create': (context) => AddCategories(),
       },
       home: LoginPage(),
       debugShowCheckedModeBanner: false,

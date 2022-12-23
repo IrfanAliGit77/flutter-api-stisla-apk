@@ -72,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                   Container(
                     decoration:  BoxDecoration(
                        color : Colors.white,
-                        borderRadius: BorderRadius.circular(20)
+                        borderRadius: BorderRadius.circular(20),
                       ),
                     child: Form(
                       key: _loginKey,

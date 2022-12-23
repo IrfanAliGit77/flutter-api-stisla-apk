@@ -31,7 +31,7 @@ class kategoriController{
     String? token = await storage.read(key: 'token');
     try {
       final response = await http.post(
-        Uri.parse(_baseURL + 'category'),
+        Uri.parse(_baseURL + 'kategori'),
         headers: {
           'Accept': 'application/json',
           "Authorization": "Bearer $token",

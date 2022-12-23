@@ -22,6 +22,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    getCategories();
     super.initState();
   }
 
@@ -60,7 +61,19 @@ class _HomePageState extends State<HomePage> {
                               color: Colors.blueGrey[50],
                               child: Padding(
                                 padding: const EdgeInsets.all(20.0),
-                                child: Text(e.name),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 330,
+                                      child: Text(
+                                        e.name,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           )
@@ -69,6 +82,21 @@ class _HomePageState extends State<HomePage> {
                   } else {
                     return const Center(child: CircularProgressIndicator());
                   }
+                },
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.fromLTRB(0, 20, 0, 15),
+              child: MaterialButton(
+                minWidth: 500,
+                height: 50,
+                child:  Text(
+                  "Create New Category",
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
+                ),
+                color: const Color.fromARGB(255, 26, 53, 255),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/category/create');
                 },
               ),
             ),

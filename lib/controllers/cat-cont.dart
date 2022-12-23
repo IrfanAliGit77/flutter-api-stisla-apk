@@ -40,15 +40,28 @@ class kategoriController{
           'name': name,
         },
       );
-      if (response.statusCode == 201) {
-        return true;
-      } else {
-        print(response.statusCode);
-        return false;
-      }
+        if (response.statusCode == 201) {
+          return true;
+        } else {
+          print(response.statusCode);
+          return false;
+        }
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  Future delete(Kategori kat) async {
+    var apiUrl = Uri.parse('${_baseURL}kategori/${kat.id}');
+
+    final value = await storage.read(key: 'token');
+
+    final response = await http.delete(apiUrl, headers: {
+      HttpHeaders.authorizationHeader: 'Bearer $value',
+    });
+
+    return response;
+
   }
 
 }

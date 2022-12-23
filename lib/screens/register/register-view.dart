@@ -21,7 +21,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4EEFF),
+      backgroundColor: const Color.fromARGB(255, 204, 230, 253),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 26, 53, 255),
         centerTitle: true,
@@ -35,14 +35,19 @@ class _RegisterState extends State<Register> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Form(
+        child: Padding(
+          padding: const EdgeInsets.all(50),
+          child: Container(
+              decoration:  BoxDecoration(
+                color : Colors.white,
+                borderRadius: BorderRadius.circular(20)
+                ),
+            child: Form(
               key: _registerKey,
               child: Padding(
                 padding: const EdgeInsets.all(50.0),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const SizedBox(
                       height: 20,
@@ -127,7 +132,7 @@ class _RegisterState extends State<Register> {
                           }
                         },
                         color: const Color.fromARGB(255, 26, 53, 255),
-                        minWidth: 500,
+                        minWidth: 200,
                         height: 60,
                         child: Text(
                           "Register Now",
@@ -139,7 +144,9 @@ class _RegisterState extends State<Register> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Already have an account?"),
+                        const Text("Already have an account?",
+                        style: TextStyle(fontSize: 12),
+                        ),
                         TextButton(
                           style: ButtonStyle(
                             foregroundColor: MaterialStateProperty.all(
@@ -150,6 +157,7 @@ class _RegisterState extends State<Register> {
                             "Do Login!",
                             style: TextStyle(
                               color: Color.fromARGB(255, 26, 53, 255),
+                              fontSize: 12,
                             ),
                           ),
                           onPressed: () {
@@ -161,10 +169,10 @@ class _RegisterState extends State<Register> {
                   ],
                 ),
               ),
-            ),
-          ],
-        ),
+            ),   
+          ),
+       ),
       ),
-    );
+   );
   }
 }

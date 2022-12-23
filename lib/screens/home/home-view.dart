@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:apk_api/models/kategori.dart';
+import 'package:apk_api/controllers/cat-cont.dart';
 import 'package:apk_api/controllers/log-cont.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,6 +13,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final logout = LogController();
 
+  List<Kategori> listKat = [];
+  final kat = kategoriController();
+
+  getCategories() async {
+    listKat = await kat.getCategories();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -19,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4EEFF),
+      backgroundColor: Color.fromARGB(255, 204, 230, 253),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 26, 53, 255),
         centerTitle: true,
@@ -33,11 +42,38 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: Container(
+        color: Color.fromARGB(255, 255, 255, 255),
+        width: 5000,
         margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
         child: Column(
           children: [
+            Expanded(
+              child: FutureBuilder(
+                future: kat.getCategories(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return ListView(
+                      children: (snapshot.data ?? [])
+                          .map(
+                            (e) => Card(
+                              margin: EdgeInsets.all(4.0),
+                              color: Colors.blueGrey[50],
+                              child: Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Text(e.name),
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    );
+                  } else {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                },
+              ),
+            ),
              MaterialButton(
-              minWidth: 500,
+              minWidth: 150,
               height: 50,
               child: Text(
                 "Logout",
@@ -50,6 +86,9 @@ class _HomePageState extends State<HomePage> {
                           Navigator.of(context).popAndPushNamed('/login'),
                     );
               },
+            ),
+            const SizedBox(
+              height: 20,
             ),
           ],
         ),

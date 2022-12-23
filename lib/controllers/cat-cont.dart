@@ -27,4 +27,28 @@ class kategoriController{
     return payload.map((e) => Kategori.fromJson(e)).toList();
   }
 
+  Future addCategories(String name) async {
+    String? token = await storage.read(key: 'token');
+    try {
+      final response = await http.post(
+        Uri.parse(_baseURL + 'category'),
+        headers: {
+          'Accept': 'application/json',
+          "Authorization": "Bearer $token",
+        },
+        body: {
+          'name': name,
+        },
+      );
+      if (response.statusCode == 201) {
+        return true;
+      } else {
+        print(response.statusCode);
+        return false;
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
 }

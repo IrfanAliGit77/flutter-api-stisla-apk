@@ -1,4 +1,4 @@
-# flutter_apk_api_stisla
+# flutter apk with API to connect Stisla Laravel
 
 A new Flutter project.
 

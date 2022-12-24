@@ -51,6 +51,23 @@ class kategoriController{
     }
   }
 
+  Future update(int katId, String newKatName) async {
+    var apiUrl = Uri.parse('${_baseURL}category/${katId}');
+    String? token = await storage.read(key: 'token');
+
+    final response = await http.put(
+      apiUrl,
+      headers: {
+        "Accept": "application/json",
+        "Authorization": "Bearer $token",
+      },
+      body: {
+        "name": newKatName,
+      },
+    );
+    return response.statusCode;
+  }
+
   Future delete(Kategori kat) async {
     var apiUrl = Uri.parse('${_baseURL}kategori/${kat.id}');
 

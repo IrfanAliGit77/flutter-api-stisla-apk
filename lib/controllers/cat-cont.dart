@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io';
 
-class kategoriController{
+class KategoriController{
   final _baseURL = 'http://192.168.1.15:8000/api/';
 
   final storage = const FlutterSecureStorage();
@@ -51,7 +51,7 @@ class kategoriController{
     }
   }
 
-  Future update(int katId, String newKatName) async {
+  Future edit(int katId, String newKatName) async {
     var apiUrl = Uri.parse('${_baseURL}category/${katId}');
     String? token = await storage.read(key: 'token');
 

@@ -1,60 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:apk_api/controllers/cat-cont.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/container.dart';
 
-class AddCategories extends StatefulWidget {
-  const AddCategories({super.key});
+class UpdateKat extends StatefulWidget {
+  const UpdateKat({super.key});
 
   @override
-  State<AddCategories> createState() => _AddCategoriesState();
+  State<UpdateKat> createState() => _UpdateKatState();
 }
 
-class _AddCategoriesState extends State<AddCategories> {
-  @override
-  final _addkategorikey = GlobalKey<FormState>();
-  final TextEditingController _addkategori = TextEditingController();
-  KategoriController kat = KategoriController();
+class _UpdateKatState extends State<UpdateKat> {
+  final TextEditingController _katname = TextEditingController();
 
+  final KategoriController kat = KategoriController();
+  final _upkey = GlobalKey<FormState>();
+
+  @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as List<dynamic>;
+
+    if (args[1] != null) {
+      _katname.text = args[1];
+    }
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 204, 230, 253),
+      backgroundColor: const Color(0xFFF4EEFF),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 26, 53, 255),
         centerTitle: true,
         elevation: 0,
         title: const Text(
-          'Create Categories',
+          'Edit Category Page',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          color : Colors.white,
-          borderRadius: BorderRadius.circular(30),
-        ),
-        width: 1000,
-        height: 400,
-        margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(
-               height: 20,
-            ),
-            const Text(
-            'Create New Category',
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'Update Category',
             style: TextStyle(
-              color: Color.fromARGB(255, 88, 107, 255),
-              fontSize: 40,
+              color: const Color.fromARGB(255, 26, 53, 255),
+              fontSize: 24,
               fontWeight: FontWeight.bold,
-             ),
-           ),
+            ),
+          ),
           Form(
-            key: _addkategorikey,
+            key: _upkey,
             child: Padding(
               padding: const EdgeInsets.all(50.0),
               child: Column(
@@ -65,12 +58,13 @@ class _AddCategoriesState extends State<AddCategories> {
                         return 'Category should not empty';
                       }
                     },
-                    controller: _addkategori,
+                    controller: _katname,
                     decoration: const InputDecoration(
                       labelText: 'Category name',
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            width: 1, color: Color.fromARGB(255, 26, 53, 255)),
+                            width: 1, color: const Color.fromARGB(255, 26, 53, 255),
+                        ),
                       ),
                       border: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -89,31 +83,25 @@ class _AddCategoriesState extends State<AddCategories> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
-                          const Color.fromARGB(255, 26, 53, 255),
+                          const Color.fromARGB(255, 26, 53, 255)
                         ),
                       ),
                       onPressed: () async {
-                        if (_addkategorikey.currentState!.validate()) {
-                          await kat
-                              .addCategories(
-                                _addkategori.text,
-                              )
-                              .then((value) => Navigator.of(context)
-                                  .popAndPushNamed('/homepage'));
+                        if (_upkey.currentState!.validate()) {
+                          kat.edit(args[0], _katname.text).then(
+                                (value) => Navigator.of(context).pop(true),
+                              );
                         }
                       },
-                      child: const Text(
-                        'Submit',
-                        style: TextStyle(fontSize: 18),
-                        ),
+                      child: const Text('Submit', style: TextStyle(fontSize: 18),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-           ],
-        ),
+          ),
+        ],
       ),
     );
   }

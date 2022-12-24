@@ -14,7 +14,7 @@ class _HomePageState extends State<HomePage> {
   final logout = LogController();
 
   List<Kategori> listKat = [];
-  final kat = kategoriController();
+  final kat = KategoriController();
 
   getCategories() async {
     listKat = await kat.getCategories();
@@ -73,6 +73,19 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                     IconButton(
+                                      onPressed: () async {
+                                        var data = await Navigator.of(context)
+                                            .pushNamed('/kategori/edit',
+                                                arguments: [e.id, e.name]);
+                                        if (data != null) {
+                                          await getCategories();
+                                          setState(() {});
+                                        }
+                                      },
+                                      color: const Color.fromARGB(255, 26, 53, 255),
+                                      icon: const Icon(Icons.edit),
+                                    ),
+                                    IconButton(
                                       icon: const Icon(
                                         Icons.delete,
                                         color: Colors.red,
@@ -84,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                                           title:
                                               const Text('Delete Kategori'),
                                           backgroundColor:
-                                              const Color(0xFFDCD6F7),
+                                              Color.fromARGB(255, 255, 255, 255),
                                           content: const Text(
                                               'Apakah anda akan yakin menghapus?'),
                                           actions: <Widget>[
@@ -137,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 color: const Color.fromARGB(255, 26, 53, 255),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/category/create');
+                  Navigator.pushNamed(context, '/kategori/create');
                 },
               ),
             ),

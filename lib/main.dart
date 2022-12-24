@@ -4,6 +4,7 @@ import 'package:apk_api/screens/home/home-view.dart';
 import 'package:apk_api/screens/login/login-view.dart';
 import 'package:apk_api/screens/kategori/create.dart';
 import 'package:apk_api/screens/register/register-view.dart';
+import 'package:apk_api/screens/kategori/edit.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const MainApp(),
         '/homepage': (context) => const HomePage(),
         '/register': (context) => const Register(),
-        '/category/create': (context) => AddCategories(),
+        '/kategori/create': (context) => AddCategories(),
+        '/kategori/edit': (context) => const UpdateKat(),
       },
       home: LoginPage(),
       debugShowCheckedModeBanner: false,

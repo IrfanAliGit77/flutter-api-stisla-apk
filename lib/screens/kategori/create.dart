@@ -60,7 +60,6 @@ class _AddCategoriesState extends State<AddCategories> {
               child: Column(
                 children: [
                   TextFormField(
-                    // The validator receives the text that the user has entered.
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Category should not empty';
@@ -95,8 +94,6 @@ class _AddCategoriesState extends State<AddCategories> {
                       ),
                       onPressed: () async {
                         if (_addkategorikey.currentState!.validate()) {
-                          // If the form is valid, display a snackbar. In the real world,
-                          // you'd often call a server or save the information in a database.
                           await kat
                               .addCategories(
                                 _addkategori.text,

@@ -72,6 +72,47 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                       ),
                                     ),
+                                    IconButton(
+                                      icon: const Icon(
+                                        Icons.delete,
+                                        color: Colors.red,
+                                      ),
+                                      onPressed: () async => showDialog<String>(
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            AlertDialog(
+                                          title:
+                                              const Text('Delete Kategori'),
+                                          backgroundColor:
+                                              const Color(0xFFDCD6F7),
+                                          content: const Text(
+                                              'Apakah anda akan yakin menghapus?'),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              onPressed: () =>
+                                                  Navigator.pop(context, 'Tidak'),
+                                              child: const Text(
+                                                'Tidak',
+                                                style: TextStyle(
+                                                    color: Color.fromARGB(255, 26, 53, 255)),
+                                              ),
+                                            ),
+                                            TextButton(
+                                              onPressed: () async => {
+                                                await kat.delete(e),
+                                                setState(() {}),
+                                                Navigator.pop(context, 'Ya'),
+                                              },
+                                              child: const Text(
+                                                'Ya',
+                                                style: TextStyle(
+                                                    color: Color.fromARGB(255, 26, 53, 255)),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
